@@ -35,7 +35,8 @@ export default function DiscussionLanding() {
             async function getData(){
                 await axios({
                     method:"get",
-                    url:"https://discussion-forum-101.herokuapp.com/getdiscussions"
+                    url:`${window.URL_CONFIG.PROD_URL}/getdiscussions`,
+                    withCredentials:true
                 }).then((response)=> {
                     setDiscussionData(response.data)
                 })
