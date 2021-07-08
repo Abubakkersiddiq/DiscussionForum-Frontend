@@ -8,6 +8,7 @@ export default function RegisterPage(props) {
     const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
     const [passworderror, setPasswordError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [usernameError, setUsernameError] = useState(false);
 
 
     //User Registration Function
@@ -25,10 +26,14 @@ export default function RegisterPage(props) {
         {
             setPasswordError(true)
             setErrorMessage("Password cannot be empty")
+        } else if( username === ""){
+            setUsernameError(true)
+            setErrorMessage("Username cannot be empty")
         }
         else 
         {
             setPasswordError(false)
+            setUsernameError(false)
             setErrorMessage("")
 
             //Sending back to the parent function for registraion
@@ -49,6 +54,8 @@ export default function RegisterPage(props) {
         variant="outlined"
         label="Username"
         style={{ margin: "20px 70px" }}
+        error={usernameError}
+        helperText={errorMessage}
       />
       <TextField
         id="auth_password"
