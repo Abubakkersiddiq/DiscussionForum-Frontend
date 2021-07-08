@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, IconButton } from "@material-ui/core";
+import { ExitToApp } from '@material-ui/icons';
 import { useAuth } from './Context';
 import AuthenticationModal from './Authentication/AuthenticationModal';
 import { useUsername } from './UserContext';
@@ -23,7 +24,7 @@ export default function NavBar() {
     const onLogout = () =>{
         axios({
             method:"GET",
-            url:"http://localhost:4000/logout",
+            url:`${window.URL_CONFIG.PROD_URL}/logout`,
         }).then((response)=>{
             if(response.status === 200)
             {
@@ -44,8 +45,13 @@ export default function NavBar() {
                     ? <Button color="inherit" onClick={()=>setAuthVisibility(true)}> 
                         Login
                       </Button>
-                    : <div onClick={onLogout}>
-                        {username}
+                    : <div style={{display:"flex"}}>
+                        <div style={{margin:"auto"}}>
+                            {username}
+                        </div>
+                        <IconButton onClick={onLogout}>
+                            <ExitToApp style={{color:"white"}}/>
+                        </IconButton>
                     </div>
                 }
             </Toolbar>

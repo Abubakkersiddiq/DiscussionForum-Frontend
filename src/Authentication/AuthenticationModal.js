@@ -11,12 +11,13 @@ import { Alert } from "@material-ui/lab";
 function AuthenticationModal(props) {
     const {visibility, onVisibiltyUpdate} = props
     const [tabvalue, setTabValue] = useState(0);
-    const [auth, handleAuth] = useAuth(useAuth);
-    const [username, handleUsername] = useUsername(useUsername)
+    const [, handleAuth] = useAuth(useAuth);
+    const [, handleUsername] = useUsername(useUsername)
     const [alertType, setAlertType] = useState("success");
     const [alertVisibility, setAlertVisibility] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
 
+    // Function to be called when the user performs login
     const onLogin = async(username, password) => {
        await axios({
             method:"POST",
@@ -29,22 +30,27 @@ function AuthenticationModal(props) {
         })
         .then((response)=> {
             console.log(response)
-            if(response.data === "Successfully Authenticated")
+            if(response.data)
             {
-                handleAuth()
-                setAlertType("success")
-                setAlertVisibility(true)
-                setAlertMessage(response.data)
-            }else if (response.data === "User doesnt exists")
-            {
-                setAlertVisibility(true)
-                setAlertType("error")
-                setAlertMessage("Invalid Credentials")
-            }    
-            getUser()
+                console.log(response.data)
+                if(response.data.message === "Successfully Authenticated")
+                {
+                    handleAuth()
+                    setAlertType("success")
+                    setAlertVisibility(true)
+                    setAlertMessage(response.data.message)
+                }else if (response.data.message === "User doesnt exists")
+                {
+                    setAlertVisibility(true)
+                    setAlertType("error")
+                    setAlertMessage("Invalid Credentials")
+                }    
+                handleUsername(response.data.username)
+            }
         })
     }
 
+    // Function to be called when a new user tries to register
     const onRegister = async(username, password) => {
        await axios({
             method:"POST",
@@ -57,28 +63,21 @@ function AuthenticationModal(props) {
         })
         .then((response)=> {
             console.log(response)
-            setAlertVisibility(true)
-            setAlertType("success")
-            setAlertMessage("User successfully created.Please Login with the credentials")
-        })
-    }
 
-    const getUser = async() => {
-        await axios({
-            method:"GET",
-            url:`${window.URL_CONFIG.PROD_URL}/user`,
-            withCredentials: true
-        })
-        .then((response)=> {
-            console.log(response)
-            if(response.data)
+            if(response.data === "User created successfully")
             {
-                handleUsername(response.data.username)
+                setAlertVisibility(true)
+                setAlertType("success")
+                setAlertMessage("User successfully created.Please Login with the credentials")
+            } else {
+                setAlertVisibility(true)
+                setAlertType("error")
+                setAlertMessage(response.data)
             }
-            console.log(username)
         })
     }
 
+    //When the modal is closed
     const onModalClose =()=> {
         setAlertVisibility(false)
         setTabValue(0)
@@ -86,6 +85,7 @@ function AuthenticationModal(props) {
         onVisibiltyUpdate(false)
     }
 
+    //When the tabs are changed from one section to another
     const onTabChange =(newValue) => {
         setTabValue(newValue)
         setAlertVisibility(false)

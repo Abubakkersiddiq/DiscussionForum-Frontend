@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme)=>({
 }))
 
 export default function DiscussionLanding() {
-    const [auth, handleAuth] = useAuth(useAuth);
+    const [auth] = useAuth(useAuth);
     const discussionStyles = useStyles();
     const [newDiscussionVisibility, setNewDiscussionVisibility] = useState(false)
     const [discussionData, setDiscussionData] = useState({});

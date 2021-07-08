@@ -15,6 +15,7 @@ const discussionStyles = makeStyles((theme)=> ({
     }
 }))
 
+//Design for the overview of the discussion card
 export default function DiscussionPaperCard(props) {
     const {topic, description, id} = props
     const history = useHistory();

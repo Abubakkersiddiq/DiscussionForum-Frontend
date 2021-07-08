@@ -14,6 +14,7 @@ export default function CreateDiscussion(props) {
         onVisibilityUpdate(false)
     }
 
+    // Function to be called when a logged in user creates a new topic
     const onCreateRecord = async() => {
         const topic = document.getElementById("discussion_topic").value
         const description = document.getElementById("discussion_description").value
@@ -27,7 +28,7 @@ export default function CreateDiscussion(props) {
     
             await axios({
                 method:"post",
-                url:"http://localhost:4000/create",
+                url:`${window.URL_CONFIG.PROD_URL}/create`,
                 data: data,
                 withCredentials:true
             }).then((response)=> {

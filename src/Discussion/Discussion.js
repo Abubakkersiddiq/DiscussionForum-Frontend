@@ -22,7 +22,7 @@ function Discussion() {
             await axios({
                 method:"get",
                 data:{id},
-                url:`http://localhost:4000/getRecord/${id}`,
+                url:`${window.URL_CONFIG.PROD_URL}/getRecord/${id}`,
                 withCredentials:true
             }).then((response)=> {
                 console.log(response)
@@ -54,7 +54,7 @@ function Discussion() {
             
             await axios({
                 method:"put",
-                url:`http://localhost:4000/update/${id}`,
+                url:`${window.URL_CONFIG.PROD_URL}/update/${id}`,
                 data: finalRequestData,
                 withCredentials: true
 
