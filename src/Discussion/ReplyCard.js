@@ -1,21 +1,26 @@
 import React from 'react';
-import { Avatar } from "@material-ui/core";
+import { Avatar, Typography } from "@material-ui/core";
+import "./styles/ReplyCard.css";
 
 function ReplyCard(props) {
     const {username, description} = props;
     return (
-        <div style={{width:"100%", display:"flex", flexDirection:"column"}}>
-                        <div style={{display:"flex", flexDirection:"column", margin:"20px 30px", backgroundColor:"lightblue"}}>
+        <div className="reply_card">
+                        <div className="reply_card_arrangement">
                             <div style={{fontWeight:"bold", margin:"10px 10px", display:"flex"}}>
-                                <Avatar>
-                                    {username[0]}
+                                <Avatar className="avatar">
+                                    {username[0].toUpperCase()}
                                 </Avatar>
-                                <div style={{margin:"auto 10px"}}>
+                                <div className="username_title">
+                                <Typography variant="h6">
                                     {username}
+                                </Typography>
                                 </div>
                             </div>
-                            <div style={{margin:"10px 50px"}}>
+                            <div className="reply_description">
+                            <Typography variant="subtitle1">
                                 {description}
+                            </Typography>
                             </div>
                         </div>
                 </div>

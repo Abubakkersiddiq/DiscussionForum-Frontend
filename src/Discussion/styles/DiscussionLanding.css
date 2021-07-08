@@ -1,0 +1,10 @@
+.landing_title{
+    margin: 20px !important;
+}
+
+.no_discussions{
+    display: flex;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+}

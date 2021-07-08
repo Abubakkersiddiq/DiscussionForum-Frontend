@@ -1,0 +1,8 @@
+.dialog_content{
+    display: flex;
+    flex-direction: column;
+}
+
+.margin_20_70{
+    margin: 20px 70px !important;
+}

@@ -1,0 +1,36 @@
+.discussion_title{
+    margin: 10px 20px !important;
+    font-weight: lighter !important;
+}
+
+.no_replies{
+    display: flex;
+    font-size: large;
+    justify-content: center;
+}
+
+.text_area{
+    width: 600px;
+    min-height: 90px;
+    justify-content: center;
+}
+
+.reply_area{
+    overflow-y: scroll;
+    height: 60vh;
+}
+
+.reply_content_area{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.reply_contents{
+    display: flex;
+    margin: 10px auto;
+}
+
+.reply_textbox{
+    margin: auto 10px !important;
+}

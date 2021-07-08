@@ -1,0 +1,16 @@
+.grid{
+    margin: 20px !important;
+}
+
+.title{
+    margin: 10px 0px;
+}
+
+.card_description{
+    margin: 10px;
+}
+
+.card_viewBtn{
+    margin: 10px 20px;
+    align-self: flex-end;
+}

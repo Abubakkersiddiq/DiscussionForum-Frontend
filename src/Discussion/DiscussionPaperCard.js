@@ -3,6 +3,7 @@ import { Grid, Paper, Typography, Button } from "@material-ui/core";
 import { NavigateNext } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from 'react-router-dom';
+import "./styles/DiscussionPaperCard.css";
 
 const discussionStyles = makeStyles((theme)=> ({
     root:{
@@ -22,15 +23,15 @@ export default function DiscussionPaperCard(props) {
     const disStyles = discussionStyles()
     
     return (
-            <Grid item xs={6} sm={6} style={{margin:"20px auto"}}>
+            <Grid item xs={6} sm={3} className="grid">
                 <Paper className={disStyles.paper} elevation={3}>
-                    <Typography variant="h6" style={{margin:"10px 0px"}}  >
+                    <Typography variant="h6" className="title"  >
                         {topic}
                     </Typography>
-                    <div style={{margin:"10px 20px"}}>
+                    <div className="card_description">
                         {description}
                     </div>
-                    <div  style={{margin:"10px 20px", alignSelf:"flex-end"}}>
+                    <div  className="card_viewBtn">
                         <Button 
                             color="primary"
                             endIcon={<NavigateNext/>}
